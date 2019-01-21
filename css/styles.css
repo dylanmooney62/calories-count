@@ -308,6 +308,7 @@ section {
 
 .food {
   padding: 2rem 1.6rem;
+  margin-bottom: 1.2rem;
   display: flex;
   justify-content: space-between;
   background-color: var(--color-white);
@@ -319,6 +320,10 @@ section {
 
 .food:active {
   background-color: var(--color-light-grey-2);
+}
+
+.food__details--right {
+  text-align: right;
 }
 
 .food__detail {
