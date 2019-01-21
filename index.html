@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Calories Count</title>
+  <!-- SCRIPTS -->
+  <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <!-- LINKS -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/jquery.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- START OF HOME PAGE -->
+  <section id="home" data-role="page">
+    <div class="flex-wrapper">
+      <!-- START OF HEADER -->
+      <header class="header">
+        <div class="header__brand">
+          <h2>Calories Count</h2>
+        </div>
+
+        <button class="header__button">
+          <i class="material-icons header__icon header__icon--more">
+            more_vert
+          </i>
+        </button>
+
+        <div class="header__menu header__menu--hidden">
+          <ul class="header__menu-list">
+            <li class="header__menu-item">
+              <a href="#settings" class="header__menu-link">
+                Settings
+              </a>
+            </li>
+            <li class="header__menu-item">
+              <a href="#help" class="header__menu-link">
+                Help
+              </a>
+            </li>
+            <li class="header__menu-item">
+              <a href="#contact" class="header__menu-link">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </header>
+      <!-- END OF HEADER -->
+
+      <!-- START OF MAIN CONTENT -->
+      <div class="main">
+        <div class="display">
+          <button class="display__button" id="reset-button">
+            <i class="material-icons display__icon">
+              refresh
+            </i>
+          </button>
+          <div class="display__group">
+            <span class="display__number" id="calories-total">1000</span>
+            <span class="display__label">Total Calories</span>
+          </div>
+          <div class="display__group">
+            <span class="display__number" id="calories-goal">2000</span>
+            <span class="display__label">Todays Goal</span>
+          </div>
+          <div class="display__group">
+            <span class="display__number display__number--green" id="calories-remaining">1000</span>
+            <span class="display__label">Calories Left</span>
+          </div>
+        </div>
+
+        <div class="container">
+          <h3>My Food</h3>
+
+          <ul class="food-list" id="food-list">
+            <!-- TEMPLATE EXAMPLE -->
+
+            <!-- <li class="food-list__item">
+              <a href="#food-detail" class="food" id="1">
+                <div class="food__left-details">
+                  <span class="food__detail">Banana Milkshake</span>
+                  <span class="food__detail">Lunch</span>
+                </div>
+                <div class="food__right-details">
+                  <span class="food__detail">500Kcal</span>
+                  <span class="food__detail">Dairy</span>
+                </div>
+              </a>
+            </li> -->
+
+          </ul>
+        </div>
+
+
+        <a class="add-button" href="#food-add">
+          <i class="add-button__icon material-icons">
+            add
+          </i>
+        </a>
+      </div>
+      <!-- END OF MAIN CONTENT -->
+    </div>
+  </section>
+  <!-- END OF HOME PAGE -->
+
+  <!-- START OF FOOD DETAIL PAGE -->
+  <section id="food-detail" data-role="page">
+    <p>This is the food detail page</p>
+  </section>
+  <!-- END OF FOOD DETAIL PAGE -->
+
+  <!-- START OF FOOD ADD PAGE -->
+  <section id="food-add" data-role="page">
+    <div class="flex-wrapper">
+      <!-- START OF HEADER -->
+      <header class="header">
+
+        <a class="header__button" href="#home" data-transition="slide" data-direction="reverse">
+          <i class="material-icons header__icon">
+            chevron_left
+          </i>
+        </a>
+
+        <div class="header__brand">
+          <h2>Add Food</h2>
+        </div>
+
+        <button class="header__button">
+          <i class="material-icons header__icon header__icon--more">
+            more_vert
+          </i>
+        </button>
+
+        <div class="header__menu header__menu--hidden">
+          <ul class="header__menu-list">
+            <li class="header__menu-item">
+              <a href="#settings" class="header__menu-link" data-transition="slide">
+                Settings
+              </a>
+            </li>
+            <li class="header__menu-item">
+              <a href="#help" class="header__menu-link">
+                Help
+              </a>
+            </li>
+            <li class="header__menu-item">
+              <a href="#contact" class="header__menu-link">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </header>
+      <!-- END OF HEADER -->
+
+      <!-- START OF MAIN CONTENT -->
+      <div class="main">
+        This is the add food page
+      </div>
+      <!-- END OF MAIN CONTENT -->
+    </div>
+  </section>
+  <!-- END OF FOOD ADD PAGE -->
+
+  <!-- START OF SETTINGS PAGE -->
+  <section id="settings" data-role="page">
+    <div class="flex-wrapper">
+      <!-- START OF HEADER -->
+      <header class="header">
+
+        <a class="header__button" href="#home" data-transition="slide" data-direction="reverse">
+          <i class="material-icons header__icon">
+            chevron_left
+          </i>
+        </a>
+
+        <div class="header__brand">
+          <h2>Settings</h2>
+        </div>
+
+        <button class="header__button">
+          <i class="material-icons header__icon header__icon--more">
+            more_vert
+          </i>
+        </button>
+
+        <div class="header__menu header__menu--hidden">
+          <ul class="header__menu-list">
+            <li class="header__menu-item">
+              <a href="#settings" class="header__menu-link">
+                Settings
+              </a>
+            </li>
+            <li class="header__menu-item">
+              <a href="#help" class="header__menu-link">
+                Help
+              </a>
+            </li>
+            <li class="header__menu-item">
+              <a href="#contact" class="header__menu-link">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </header>
+      <!-- END OF HEADER -->
+
+      <!-- START OF MAIN CONTENT -->
+      <div class="main">
+        This is the settings page
+      </div>
+      <!-- END OF MAIN CONTENT -->
+    </div>
+  </section>
+  <!-- END OF SETTINGS PAGE -->
+
+  <!-- START OF HELP PAGE -->
+  <section id="help" data-role="page">
+    <div class="flex-wrapper">
+      <!-- START OF HEADER -->
+      <header class="header">
+
+        <a class="header__button" href="#home" data-transition="slide" data-direction="reverse">
+          <i class="material-icons header__icon">
+            chevron_left
+          </i>
+        </a>
+
+        <div class="header__brand">
+          <h2>Help</h2>
+        </div>
+
+        <button class="header__button">
+          <i class="material-icons header__icon header__icon--more">
+            more_vert
+          </i>
+        </button>
+
+        <div class="header__menu header__menu--hidden">
+          <ul class="header__menu-list">
+            <li class="header__menu-item">
+              <a href="#settings" class="header__menu-link">
+                Settings
+              </a>
+            </li>
+            <li class="header__menu-item">
+              <a href="#help" class="header__menu-link">
+                Help
+              </a>
+            </li>
+            <li class="header__menu-item">
+              <a href="#contact" class="header__menu-link">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </header>
+      <!-- END OF HEADER -->
+
+      <!-- START OF MAIN CONTENT -->
+      <div class="main">
+        This is the help page
+      </div>
+      <!-- END OF MAIN CONTENT -->
+    </div>
+  </section>
+  <!-- END OF HELP PAGE -->
+
+  <!-- START OF CONTACT PAGE -->
+  <section id="contact" data-role="page">
+    <div class="flex-wrapper">
+      <!-- START OF HEADER -->
+      <header class="header">
+
+        <a class="header__button" href="#home" data-transition="slide" data-direction="reverse">
+          <i class="material-icons header__icon">
+            chevron_left
+          </i>
+        </a>
+
+        <div class="header__brand">
+          <h2>Contact</h2>
+        </div>
+
+        <button class="header__button">
+          <i class="material-icons header__icon header__icon--more">
+            more_vert
+          </i>
+        </button>
+
+        <div class="header__menu header__menu--hidden">
+          <ul class="header__menu-list">
+            <li class="header__menu-item">
+              <a href="#settings" class="header__menu-link">
+                Settings
+              </a>
+            </li>
+            <li class="header__menu-item">
+              <a href="#help" class="header__menu-link">
+                Help
+              </a>
+            </li>
+            <li class="header__menu-item">
+              <a href="#contact" class="header__menu-link">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </header>
+      <!-- END OF HEADER -->
+      <!-- START OF MAIN CONTENT -->
+      <div class="main">
+        This is the contact page
+      </div>
+      <!-- END OF MAIN CONTENT -->
+    </div>
+  </section>
+  <!-- END OF CONTACT PAGE -->
+
+  <!-- SCRIPTS -->
+  <script src="js/menu.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
