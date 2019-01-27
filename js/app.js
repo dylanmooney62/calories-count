@@ -1,13 +1,30 @@
 // EVENT LISTENERS
+document.getElementById('add-food-form').addEventListener('submit', function(e)  {
+  // stop form from submitting
+  e.preventDefault();
 
+  // get all values from form
+  const name = document.getElementById('add-food-name').value,
+        time = document.getElementById('add-food-time').value,
+        group = document.getElementById('add-food-group').value,
+        calories = parseInt(document.getElementById('add-food-calories').value),
+        description = document.getElementById('add-food-description').value;
 
+  // create and add food from values
+  addCurrentFood(new Food(name, calories, time, group, description));
 
+  // display food on home page
+  displayCurrentFood();
 
+  // calculates total & remaing calories
+  calculateTotalAndRemainingCalories();
 
+  // updates display
+  updateCalorieDisplay();
 
-
-
-
+  // navigates to home page
+  window.location.href = '#home';
+});
 
 
 
@@ -44,10 +61,7 @@ function getData() {
         remaining: 2500
       },
       food: {
-        currentFood: [new Food('Banana Milkshake', 300, 'Lunch', 'Dairy', ''),
-          new Food('Cheese Burger', 600, 'Dinner', 'Meat', ''),
-          new Food('Potato', 300, 'Lunch', 'Vegetable', '')
-        ],
+        currentFood: [],
         savedFood: []
       }
     }
@@ -72,23 +86,40 @@ function addCurrentFood(food) {
 
 function displayCurrentFood() {
   const currentFood = getData().food.currentFood;
+  const foodList = document.getElementById('food-list');
 
-  // iterate through array creating template for each food item
-  for (food of currentFood) {
-    let html = `<li class="food-list__item">
-    <a href="#food-detail" class="food" id="${food.id}">
-      <div class="food__details food__details--left">
-        <span class="food__detail">${food.name}</span>
-        <span class="food__detail">${food.mealTime}</span>
-      </div>
-      <div class="food__details food__details--right">
-        <span class="food__detail">${food.calories}Kcal</span>
-        <span class="food__detail">${food.group}</span>
-      </div>
-    </a>
+  // reset foodList
+  foodList.innerHTML = '';
+
+  // if there is food iterate through array creating template for each food item
+  if (currentFood.length >= 1) {
+    for (food of currentFood) {
+      let html = `
+    <li class="food-list__item">
+      <a href="#food-detail" class="food" id="${food.id}">
+        <div class="food__container">
+          <div class="food__details food__details--left">
+           <span class="food__detail">${food.name}</span>
+          <span class="food__detail">${food.mealTime}</span>
+        </div>
+        <div class="food__details food__details--right">
+          <span class="food__detail">${food.calories}Kcal</span>
+          <span class="food__detail">${food.group}</span>
+         </div>
+        </div>
+      </a>
     </li>`
 
-    document.getElementById('food-list').insertAdjacentHTML('afterbegin', html);
+      foodList.insertAdjacentHTML('afterbegin', html);
+    }
+  } else {
+    foodList.innerHTML = `
+    <li class="food-list-item">
+    <p class="food-list__text">
+      Looks like you've not added any food for today. Press the plus button to add food.
+    </p>
+    </li>
+    `
   }
 }
 
@@ -103,7 +134,7 @@ function setGoalCalories(goal) {
 }
 
 // CALCULATE CALORIE GOALS AND REMAINING
-function updateCalorieCalculations() {
+function calculateTotalAndRemainingCalories() {
   calculateTotalCalories();
   calculateRemainingCalories();
 }
@@ -113,10 +144,11 @@ function calculateTotalCalories() {
 
   let totalCalories = 0;
 
-  for (food of data.food.currentFood) {
-    totalCalories += food.calories;
-  }
-
+  
+    for (food of data.food.currentFood) {
+      totalCalories += food.calories;
+    }
+  
   data.calories.total = totalCalories;
 
   localStorage.setItem('data', JSON.stringify(data));
@@ -151,17 +183,21 @@ function displayTotalCalories() {
 
 function displayRemainingCalories() {
   const caloriesRemaining = getData().calories.remaining;
-  document.getElementById('calories-remaining').textContent = caloriesRemaining;
-}
+  const carloriesRemainingDisplay = document.getElementById('calories-remaining');
 
 
-// INIT
-function init() {
-  updateCalorieCalculations();
-  displayCurrentFood();
-  updateCalorieDisplay();
+  if (caloriesRemaining >= 0) {
+    carloriesRemainingDisplay.classList.add('display__number--green');
+  } else {
+    carloriesRemainingDisplay.classList.add('display__number--red');
+  }
+
+  carloriesRemainingDisplay.textContent = caloriesRemaining;
 }
+
 
 window.onload = () => {
-  init();
+  displayCurrentFood();
+  calculateTotalAndRemainingCalories();
+  updateCalorieDisplay();
 }

@@ -14,7 +14,6 @@ document.body.addEventListener('click', (e) => {
   const headerMenu = document.querySelector('.header__menu');
 
   // checks if header icon more button was not clicked
-  console.log(e);
   if (!e.target.classList.contains('header__icon--more')) {
     // checks if one header menu is not hidden
     if (!headerMenu.classList.contains('header__menu--hidden')) {

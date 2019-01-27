@@ -2,19 +2,16 @@
 
 /* VARIABLES */
 :root {
-  --color-blue-primary: #355C78;
+  --color-blue-primary: #324965;
   --color-blue-secondary: #19354F;
   --color-blue-tertiary: #B7D1E9;
   --color-green: #51CE65;
-  --color-red: #FF7070;
+  --color-red: #ff0000;
   --color-white: #ffffff;
   --color-light-grey-1: #B8BBC6;
   --color-light-grey-2: #F6F8FB;
   --color-light-grey-3: #F5F5F5;
   --color-black: #0C1018;
-
-  --border-radius: 1rem;
-  --box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, .07), 0 5px 15px 0 hsla(0, 0%, 0%, .1);
 }
 
 html {
@@ -25,7 +22,7 @@ html {
 *,
 *::before,
 *::after {
-  /* margin 0 on all elements seems cause problems with jQuery mobile */
+  /* margin 0 on all elements seems to cause problems with jQuery mobile */
   /* margin: 0; */
   padding: 0;
   box-sizing: inherit;
@@ -45,7 +42,7 @@ body {
 }
 
 .container {
-  max-width: 700px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
@@ -68,17 +65,17 @@ h2 {
 
 h3 {
   font-size: 1.2rem;
-  margin-top: 0;
-  margin-bottom: 1.6rem;
-  color: var(--color-black);
-  font-weight: 700;
-  line-height: 1;
+  margin: 0;
+  color: var(--color-white);
+  font-weight: 400;
+  line-height: 0;
+  transform: translate(1.2rem, -1.5rem);
 }
 
 p {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: var(--color-black);
-  line-height: 1.5;
+  line-height: 1.7;
 }
 
 
@@ -92,15 +89,32 @@ section {
 /* HEADER -----------------------------------------------------------*/
 
 .header {
-  background-color: var(--color-blue-primary);
-  padding: 1.6rem;
-  display: flex;
-  align-items: center;
   position: relative;
+  background-color: var(--color-blue-primary);
+  box-shadow: 0px 4px 10px rgba(87, 71, 71, 0.25);
+  z-index: 100;
 }
 
+/* shifts down main content when header is fixed */
+.header--fixed+.main {
+  margin-top: 22.7rem;
+}
+
+.header__top {
+  display: flex;
+  align-items: center;
+  margin: 1.6rem 1.2rem;
+}
+
+.header__bottom {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+
+
 /* centers title when back button is on header */
-.header__button[href="#home"] + .header__brand {
+.header__button[href="#home"]+.header__brand {
   margin-right: 0;
 }
 
@@ -114,13 +128,15 @@ section {
   position: relative;
   background-color: transparent;
   border: none;
-  color: #ffffff;
-  font-size: 2.4rem;
-  height: 3rem;
-  width: 3rem;
+  color: var(--color-white);
+  font-size: 3rem;
   z-index: 10;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
+
 
 .header__button:focus {
   outline: none;
@@ -130,6 +146,7 @@ section {
   font-size: 3rem;
 }
 
+
 /* HEADER MENU */
 
 .header__menu {
@@ -137,8 +154,7 @@ section {
   background-color: var(--color-white);
   top: 1.6rem;
   right: 1.6rem;
-  box-shadow: var(--box-shadow);
-  border-radius: .3rem;
+  box-shadow: 0px 4px 10px rgba(87, 71, 71, 0.25);
   z-index: 20;
 }
 
@@ -182,19 +198,22 @@ section {
 /* MAIN -----------------------------------------------------------*/
 
 .main {
-  margin: 2.4rem;
   position: relative;
   flex: 1;
+  background-color: var(--color-white);
+  overflow: scroll;
 }
 
 /* BUTTONS -----------------------------------------------------------*/
 
+
+/* add button */
 .add-button {
-  width: 6.4rem;
-  height: 6.4rem;
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  width: 6rem;
+  height: 6rem;
+  position: fixed;
+  bottom: 2.4rem;
+  right: 1.2rem;
   background: var(--color-blue-primary);
   color: var(--color-white);
   border-radius: 50%;
@@ -207,7 +226,7 @@ section {
 }
 
 .add-button__icon {
-  font-size: 3.6rem;
+  font-size: 2.4rem;
 }
 
 .add-button:active {
@@ -218,19 +237,39 @@ section {
   outline: none;
 }
 
+/* normal buttons */
+
+.button {
+  font-family: inherit;
+  width: 100%;
+  padding: 1.2rem 0;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.button--primary {
+  background-color: var(--color-blue-primary);
+  border-radius: none;
+  border: none;
+  color: var(--color-white);
+}
+
+.button--secondary {}
+
+.button--tertiary {}
+
+.button:focus {
+  outline: none;
+}
+
 /* DISPLAY ----------------------------------------------------------- */
 
 .display {
   position: relative;
-  background-color: var(--color-blue-primary);
-  padding: 2.4rem 0;
-  border-radius: var(--border-radius);
   display: flex;
   justify-content: space-around;
-  max-width: 70rem;
-  margin: 0 auto;
-  margin-bottom: 4.8rem;
-  box-shadow: var(--box-shadow);
+  max-width: 600px;
+  margin: 3.2rem auto 5.8rem auto;
 }
 
 .display__button {
@@ -252,23 +291,23 @@ section {
 }
 
 .display__group {
-  padding: 1.6rem 0;
   flex: 1;
+  padding: 1.6rem 0;
 }
 
-.display__group:nth-child(2) {
-  border-right: 1px solid #486B8B;
+.display__group:nth-child(1) {
+  border-right: 1px solid #3C5B78;
   border-left: 1px solid transparent;
 }
 
 
-.display__group:nth-child(3) {
-  border-left: 1px solid #486B8B;
-  border-right: 1px solid #486B8B;
+.display__group:nth-child(2) {
+  border-left: 1px solid #3C5B78;
+  border-right: 1px solid #3C5B78;
 }
 
-.display__group:nth-child(4) {
-  border-left: 1px solid #486B8B;
+.display__group:nth-child(3) {
+  border-left: 1px solid #3C5B78;
   border-right: 1px solid transparent;
 }
 
@@ -304,22 +343,61 @@ section {
 .food-list {
   list-style: none;
   margin: 0;
+  padding-bottom: 10rem;
+}
+
+.food-list__item {
+  margin: 0 auto;
+}
+
+.food-list__text {
+  max-width: 600px;
+  margin: 2rem auto;
+  text-align: center;
+  width: 90%;
+  color: rgb(75, 77, 85);
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.food-list__item:nth-child(odd) {
+  background-color: var(--color-white);
+}
+
+.food-list__item:nth-child(odd):active {
+  background-color: var(--color-light-grey-2);
+}
+
+.food-list__item:nth-child(even) {
+  background-color: var(--color-light-grey-2);
+}
+
+.food-list__item:nth-child(even):active {
+  background-color: var(--color-white);
+}
+
+/* if there's only one food item give it grey background */
+.food-list__item:only-child {
+  background-color: var(--color-light-grey-2);
+}
+
+.food-list__item:only-child:active {
+  background-color: var(--color-white);
 }
 
 .food {
-  padding: 2rem 1.6rem;
-  margin-bottom: 1.2rem;
-  display: flex;
-  justify-content: space-between;
-  background-color: var(--color-white);
-  box-shadow: var(--box-shadow);
-  border-radius: var(--border-radius);
   text-decoration: none;
   transition: all .2s;
 }
 
-.food:active {
-  background-color: var(--color-light-grey-2);
+.food__container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 1.6rem;
+  max-width: 600px;
 }
 
 .food__details--right {
@@ -343,4 +421,83 @@ section {
 .food__detail:last-child {
   font-size: 1rem;
   color: var(--color-light-grey-1);
+}
+
+
+/* FOOD DETAIL ----------------------------------------------------------- */
+
+
+
+
+
+
+
+
+/* FORMS ----------------------------------------------------------- */
+
+.form {
+  font-family: inherit;
+  width: 100%;
+  padding: 2rem 1.2rem;
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form__input,
+.form__textarea {
+  font-family: inherit;
+  width: 100%;
+  border: none;
+  background-color: var(--color-light-grey-2);
+  font-size: 1.2rem;
+  padding: 1.2rem .8rem;
+  color: var(--color-black);
+  font-weight: 500;
+}
+
+.form__input::placeholder,
+.form__textarea::placeholder {
+  color: var(--color-light-grey-1);
+}
+
+.form__input:focus,
+.form__textarea:focus {
+  outline: none;
+  outline: 2px solid var(--color-blue-primary);
+}
+
+.form__textarea {
+  resize: vertical;
+  /* JQuery mobile likes to add a height inline style for some reason :( */
+  height: 10rem !important;
+}
+
+.form__select {
+  font-family: inherit;
+  width: 100%;
+  height: 4.3rem;
+  border: none;
+  background-color: var(--color-light-grey-2);
+  color: var(--color-black);
+  font-weight: 500;
+  border-radius: 0;
+}
+
+.form__select:focus {
+  outline: none;
+}
+
+/* JQuery adds span element on selects, this will remove it */
+.ui-select .ui-btn span {
+  display: none;
+}
+
+.form__label {
+  font-weight: 500;
+  margin-bottom: .4rem;
+}
+
+.form__group {
+  margin-bottom: 2.4rem;
 }

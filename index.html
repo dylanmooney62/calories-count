@@ -23,83 +23,81 @@
     <div class="flex-wrapper">
       <!-- START OF HEADER -->
       <header class="header">
-        <div class="header__brand">
-          <h2>Calories Count</h2>
+        <div class="header__top">
+          <div class="header__brand">
+            <h2>Calories Count</h2>
+          </div>
+
+          <button class="header__button">
+            <i class="material-icons header__icon header__icon--more">
+              more_vert
+            </i>
+          </button>
+
+          <div class="header__menu header__menu--hidden">
+            <ul class="header__menu-list">
+              <li class="header__menu-item">
+                <a href="#settings" class="header__menu-link">
+                  Settings
+                </a>
+              </li>
+              <li class="header__menu-item">
+                <a href="#help" class="header__menu-link">
+                  Help
+                </a>
+              </li>
+              <li class="header__menu-item">
+                <a href="#contact" class="header__menu-link">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <button class="header__button">
-          <i class="material-icons header__icon header__icon--more">
-            more_vert
-          </i>
-        </button>
 
-        <div class="header__menu header__menu--hidden">
-          <ul class="header__menu-list">
-            <li class="header__menu-item">
-              <a href="#settings" class="header__menu-link">
-                Settings
-              </a>
-            </li>
-            <li class="header__menu-item">
-              <a href="#help" class="header__menu-link">
-                Help
-              </a>
-            </li>
-            <li class="header__menu-item">
-              <a href="#contact" class="header__menu-link">
-                Contact
-              </a>
-            </li>
-          </ul>
+        <!-- START OF DISPLAY -->
+        <div class="display">
+          <div class="display__group">
+            <span class="display__number" id="calories-total"></span>
+            <span class="display__label">Total Calories</span>
+          </div>
+          <div class="display__group">
+            <span class="display__number" id="calories-goal"></span>
+            <span class="display__label">My Goal</span>
+          </div>
+          <div class="display__group">
+            <span class="display__number" id="calories-remaining">
+            </span>
+            <span class="display__label">Remaining</span>
+          </div>
         </div>
-
+        <!-- END OF DISPLAY -->
+        <div class="header__bottom">
+          <h3>My Food</h3>
+        </div>
       </header>
       <!-- END OF HEADER -->
 
       <!-- START OF MAIN CONTENT -->
       <div class="main">
-        <div class="display">
-          <button class="display__button" id="reset-button">
-            <i class="material-icons display__icon">
-              refresh
-            </i>
-          </button>
-          <div class="display__group">
-            <span class="display__number" id="calories-total">1000</span>
-            <span class="display__label">Total Calories</span>
-          </div>
-          <div class="display__group">
-            <span class="display__number" id="calories-goal">2500</span>
-            <span class="display__label">Todays Goal</span>
-          </div>
-          <div class="display__group">
-            <span class="display__number display__number--green" id="calories-remaining">1000</span>
-            <span class="display__label">Calories Left</span>
-          </div>
-        </div>
-
-        <div class="container">
-          <h3>My Food</h3>
-
-          <ul class="food-list" id="food-list">
-            <!-- TEMPLATE EXAMPLE -->
-
-            <!-- <li class="food-list__item">
-              <a href="#food-detail" class="food" id="1">
+        <ul class="food-list" id="food-list">
+          <!-- TEMPLATE FOR FOOD -->
+          <!-- <li class="food-list__item">
+            <a href="#food-detail" class="food" id="${food.id}">
+              <div class="food__container">
                 <div class="food__details food__details--left">
-                  <span class="food__detail">Banana Milkshake</span>
-                  <span class="food__detail">Lunch</span>
+                  <span class="food__detail">${food.name}</span>
+                  <span class="food__detail">${food.mealTime}</span>
                 </div>
                 <div class="food__details food__details--right">
-                  <span class="food__detail">500Kcal</span>
-                  <span class="food__detail">Dairy</span>
+                  <span class="food__detail">${food.calories}Kcal</span>
+                  <span class="food__detail">${food.group}</span>
                 </div>
-              </a>
-            </li> -->
-
-          </ul>
-        </div>
-
+              </div>
+            </a>
+          </li> -->
+        </ul>
 
         <a class="add-button" href="#food-add">
           <i class="add-button__icon material-icons">
@@ -114,7 +112,58 @@
 
   <!-- START OF FOOD DETAIL PAGE -->
   <section id="food-detail" data-role="page">
-    <p>This is the food detail page</p>
+    <div class="flex-wrapper">
+      <!-- START OF HEADER -->
+      <header class="header">
+        <div class="header__top">
+
+
+          <a class="header__button" href="#home" data-transition="slide" data-direction="reverse">
+            <i class="material-icons header__icon">
+              chevron_left
+            </i>
+          </a>
+
+          <div class="header__brand">
+            <h2>My Food</h2>
+          </div>
+
+          <button class="header__button">
+            <i class="material-icons header__icon header__icon--more">
+              more_vert
+            </i>
+          </button>
+
+          <div class="header__menu header__menu--hidden">
+            <ul class="header__menu-list">
+              <li class="header__menu-item">
+                <a href="#settings" class="header__menu-link" data-transition="slide">
+                  Settings
+                </a>
+              </li>
+              <li class="header__menu-item">
+                <a href="#help" class="header__menu-link">
+                  Help
+                </a>
+              </li>
+              <li class="header__menu-item">
+                <a href="#contact" class="header__menu-link">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <!-- END OF HEADER -->
+
+      <!-- START OF MAIN CONTENT -->
+      <div class="main">
+        This is the food detail page
+      </div>
+
+      <!-- END OF MAIN CONTENT -->
+    </div>
   </section>
   <!-- END OF FOOD DETAIL PAGE -->
 
@@ -123,49 +172,85 @@
     <div class="flex-wrapper">
       <!-- START OF HEADER -->
       <header class="header">
+        <div class="header__top">
 
-        <a class="header__button" href="#home" data-transition="slide" data-direction="reverse">
-          <i class="material-icons header__icon">
-            chevron_left
-          </i>
-        </a>
 
-        <div class="header__brand">
-          <h2>Add Food</h2>
+          <a class="header__button" href="#home" data-transition="slide" data-direction="reverse">
+            <i class="material-icons header__icon">
+              chevron_left
+            </i>
+          </a>
+
+          <div class="header__brand">
+            <h2>Add Food</h2>
+          </div>
+
+          <button class="header__button">
+            <i class="material-icons header__icon header__icon--more">
+              more_vert
+            </i>
+          </button>
+
+          <div class="header__menu header__menu--hidden">
+            <ul class="header__menu-list">
+              <li class="header__menu-item">
+                <a href="#settings" class="header__menu-link" data-transition="slide">
+                  Settings
+                </a>
+              </li>
+              <li class="header__menu-item">
+                <a href="#help" class="header__menu-link">
+                  Help
+                </a>
+              </li>
+              <li class="header__menu-item">
+                <a href="#contact" class="header__menu-link">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-
-        <button class="header__button">
-          <i class="material-icons header__icon header__icon--more">
-            more_vert
-          </i>
-        </button>
-
-        <div class="header__menu header__menu--hidden">
-          <ul class="header__menu-list">
-            <li class="header__menu-item">
-              <a href="#settings" class="header__menu-link" data-transition="slide">
-                Settings
-              </a>
-            </li>
-            <li class="header__menu-item">
-              <a href="#help" class="header__menu-link">
-                Help
-              </a>
-            </li>
-            <li class="header__menu-item">
-              <a href="#contact" class="header__menu-link">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
-
       </header>
       <!-- END OF HEADER -->
 
       <!-- START OF MAIN CONTENT -->
       <div class="main">
-        This is the add food page
+        <form class="form" id="add-food-form">
+          <div class="form__group">
+            <label class="form__label" for="add-food-name">Name</label>
+            <input class="form__input" id="add-food-name" type="text" placeholder="Name" required>
+          </div>
+          <div class="form__group">
+              <label class="form__label" for="add-food-time">Meal Time</label>
+              <select class="form__select" name="add-food-time" id="add-food-time" required>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Snack">Snack</option>
+              </select>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="add-food-group">Food Group</label>
+            <select class="form__select" name="add-food-group" id="add-food-group" required>
+              <option value="Mixed">Mixed</option>
+              <option value="Carbohydrates">Carbohydrates</option>
+              <option value="Meat">Meat</option>
+              <option value="Dairy">Dairy</option>
+              <option value="Fruit & Veg">Fruit & Veg</option>
+              <option value="Fats & Sugars">Fats & Sugars</option>
+            </select>  
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="add-food-calories">Calories</label>
+            <input class="form__input" name="add-food-calories" id="add-food-calories" type="number" placeholder="Calories" required >
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="add-food-description">Description</label>
+            <textarea class="form__textarea" id="add-food-description" name="add-food-description" placeholder="Description(optional)"></textarea>
+          </div>
+          <button type="submit" class="button button--primary">Add Food</button>
+        </form>
       </div>
       <!-- END OF MAIN CONTENT -->
     </div>
@@ -177,43 +262,43 @@
     <div class="flex-wrapper">
       <!-- START OF HEADER -->
       <header class="header">
+        <div class="header__top">
+          <a class="header__button" href="#home" data-transition="slide" data-direction="reverse">
+            <i class="material-icons header__icon">
+              chevron_left
+            </i>
+          </a>
 
-        <a class="header__button" href="#home" data-transition="slide" data-direction="reverse">
-          <i class="material-icons header__icon">
-            chevron_left
-          </i>
-        </a>
+          <div class="header__brand">
+            <h2>Settings</h2>
+          </div>
 
-        <div class="header__brand">
-          <h2>Settings</h2>
+          <button class="header__button">
+            <i class="material-icons header__icon header__icon--more">
+              more_vert
+            </i>
+          </button>
+
+          <div class="header__menu header__menu--hidden">
+            <ul class="header__menu-list">
+              <li class="header__menu-item">
+                <a href="#settings" class="header__menu-link">
+                  Settings
+                </a>
+              </li>
+              <li class="header__menu-item">
+                <a href="#help" class="header__menu-link">
+                  Help
+                </a>
+              </li>
+              <li class="header__menu-item">
+                <a href="#contact" class="header__menu-link">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-
-        <button class="header__button">
-          <i class="material-icons header__icon header__icon--more">
-            more_vert
-          </i>
-        </button>
-
-        <div class="header__menu header__menu--hidden">
-          <ul class="header__menu-list">
-            <li class="header__menu-item">
-              <a href="#settings" class="header__menu-link">
-                Settings
-              </a>
-            </li>
-            <li class="header__menu-item">
-              <a href="#help" class="header__menu-link">
-                Help
-              </a>
-            </li>
-            <li class="header__menu-item">
-              <a href="#contact" class="header__menu-link">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
-
       </header>
       <!-- END OF HEADER -->
 
@@ -231,43 +316,43 @@
     <div class="flex-wrapper">
       <!-- START OF HEADER -->
       <header class="header">
+        <div class="header__top">
+          <a class="header__button" href="#home" data-transition="slide" data-direction="reverse">
+            <i class="material-icons header__icon">
+              chevron_left
+            </i>
+          </a>
 
-        <a class="header__button" href="#home" data-transition="slide" data-direction="reverse">
-          <i class="material-icons header__icon">
-            chevron_left
-          </i>
-        </a>
+          <div class="header__brand">
+            <h2>Help</h2>
+          </div>
 
-        <div class="header__brand">
-          <h2>Help</h2>
+          <button class="header__button">
+            <i class="material-icons header__icon header__icon--more">
+              more_vert
+            </i>
+          </button>
+
+          <div class="header__menu header__menu--hidden">
+            <ul class="header__menu-list">
+              <li class="header__menu-item">
+                <a href="#settings" class="header__menu-link">
+                  Settings
+                </a>
+              </li>
+              <li class="header__menu-item">
+                <a href="#help" class="header__menu-link">
+                  Help
+                </a>
+              </li>
+              <li class="header__menu-item">
+                <a href="#contact" class="header__menu-link">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-
-        <button class="header__button">
-          <i class="material-icons header__icon header__icon--more">
-            more_vert
-          </i>
-        </button>
-
-        <div class="header__menu header__menu--hidden">
-          <ul class="header__menu-list">
-            <li class="header__menu-item">
-              <a href="#settings" class="header__menu-link">
-                Settings
-              </a>
-            </li>
-            <li class="header__menu-item">
-              <a href="#help" class="header__menu-link">
-                Help
-              </a>
-            </li>
-            <li class="header__menu-item">
-              <a href="#contact" class="header__menu-link">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
-
       </header>
       <!-- END OF HEADER -->
 
@@ -285,43 +370,43 @@
     <div class="flex-wrapper">
       <!-- START OF HEADER -->
       <header class="header">
+        <div class="header__top">
+          <a class="header__button" href="#home" data-transition="slide" data-direction="reverse">
+            <i class="material-icons header__icon">
+              chevron_left
+            </i>
+          </a>
 
-        <a class="header__button" href="#home" data-transition="slide" data-direction="reverse">
-          <i class="material-icons header__icon">
-            chevron_left
-          </i>
-        </a>
+          <div class="header__brand">
+            <h2>Contact</h2>
+          </div>
 
-        <div class="header__brand">
-          <h2>Contact</h2>
+          <button class="header__button">
+            <i class="material-icons header__icon header__icon--more">
+              more_vert
+            </i>
+          </button>
+
+          <div class="header__menu header__menu--hidden">
+            <ul class="header__menu-list">
+              <li class="header__menu-item">
+                <a href="#settings" class="header__menu-link">
+                  Settings
+                </a>
+              </li>
+              <li class="header__menu-item">
+                <a href="#help" class="header__menu-link">
+                  Help
+                </a>
+              </li>
+              <li class="header__menu-item">
+                <a href="#contact" class="header__menu-link">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-
-        <button class="header__button">
-          <i class="material-icons header__icon header__icon--more">
-            more_vert
-          </i>
-        </button>
-
-        <div class="header__menu header__menu--hidden">
-          <ul class="header__menu-list">
-            <li class="header__menu-item">
-              <a href="#settings" class="header__menu-link">
-                Settings
-              </a>
-            </li>
-            <li class="header__menu-item">
-              <a href="#help" class="header__menu-link">
-                Help
-              </a>
-            </li>
-            <li class="header__menu-item">
-              <a href="#contact" class="header__menu-link">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
-
       </header>
       <!-- END OF HEADER -->
       <!-- START OF MAIN CONTENT -->
