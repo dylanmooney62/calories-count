@@ -85,6 +85,18 @@ p {
   line-height: 1.7;
 }
 
+.message {
+  max-width: 600px;
+  margin: 2rem auto;
+  text-align: center;
+  width: 90%;
+  color: rgb(75, 77, 85);
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 
 /* SECTION -----------------------------------------------------------*/
 
@@ -358,23 +370,11 @@ section {
 .food-list {
   list-style: none;
   margin: 0;
-  padding-bottom: 10rem;
+  margin-bottom: 10rem;
 }
 
 .food-list__item {
   margin: 0 auto;
-}
-
-.food-list__text {
-  max-width: 600px;
-  margin: 2rem auto;
-  text-align: center;
-  width: 90%;
-  color: rgb(75, 77, 85);
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .food-list__item:nth-child(odd) {
@@ -413,64 +413,35 @@ section {
   pointer-events: none;
 }
 
-.food--full-detail > * {
-  pointer-events: all;
-}
-
 .food__container {
   margin: 0 auto;
   padding: 2rem 1.6rem;
   max-width: 600px;
 }
 
-.food__details {
+.food__section {
   display: flex;
   justify-content: space-between;
   color: var(--color-black);
 }
 
-.food__details:first-child {
+.food__section:first-child {
   margin-bottom: .8rem;
   font-size: 1.2rem;
   font-weight: 600;
 }
 
-.food__details:first-child h4 {
+.food__section:first-child h4 {
   font-weight: 600;
 }
 
-.food__details:nth-child(2) {
+.food__section:nth-child(2) {
   color: var(--color-dark-grey-1);
   font-weight: 500;
 }
 
-.food__detail {
+.food__info {
   line-height: 1;
-}
-
-
-/* Large variations of food detail */
-.food--full-detail .food__details:first-child {
-  font-weight: 500;
-  margin-bottom: 1rem;
-  font-size: 1.6rem;
-} 
-
-.food--full-detail .food__details:first-child h4 {
-  font-size: 1.6rem;
-  font-weight: 500;
-} 
-
-.food--full-detail .food__details:nth-child(2) {
-  font-size: 1.4rem;
-  padding-bottom: 1.6rem;
-  border-bottom: 1px solid var(--color-light-grey-2);
-} 
-
-.food--full-detail .food__details:last-child {
-  padding-top: 1.2rem;
-  border-top: 1px solid var(--color-light-grey-2);
-  font-size: 1.4em;
 }
 
 

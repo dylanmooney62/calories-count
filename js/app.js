@@ -1,6 +1,4 @@
-// EVENT LISTENERS
-
-// ADD FOOD FORM FUNCTIONALITY
+// adding food functionality
 document.getElementById('add-food-form').addEventListener('submit', function (e) {
   e.preventDefault();
 
@@ -10,26 +8,35 @@ document.getElementById('add-food-form').addEventListener('submit', function (e)
     calories = parseInt(document.getElementById('add-food-calories').value),
     description = document.getElementById('add-food-description').value;
 
-  addCurrentFood(new Food(name, calories, time, group, description));
-
-  displayCurrentFood();
-
+  addFood(new Food(name, calories, time, group, description));
+  displayFoodList();
   calculateTotalAndRemainingCalories();
-
   updateCalorieDisplay();
-
-  window.location.href = '#home';
-
+  navigateTo('#home');
   this.reset();
 });
 
 
-// ADDING EVENT LISTENERS TO DYNAMICALLY CREATED FOOD
-document.getElementById('food-list').addEventListener('click', (e) => {
-  if(e.target.classList.contains('food')) {  
-    const food = getFoodByID(e.target.id);
+// removing food functionality
+document.getElementById('remove-food-button').addEventListener('click', () => {
+  const id = document.querySelector('.food-detail').id;
+    removeFood(id);
+    displayFoodList();
+    calculateTotalAndRemainingCalories();
+    updateCalorieDisplay();
+    navigateTo('#home');
+})
 
-    if(food) {
+
+// event delegation to avoid adding event listeners to each dynamic food element
+document.getElementById('food-list').addEventListener('click', (e) => {
+
+  /* pointer events have been removed from all food element children 
+    so when clicking anywhere on food the target will always be the food element */
+  if (e.target.classList.contains('food')) {
+    const food = getFoodByID(e.target.id);
+  
+    if (food) {
       displayFoodDetail(food);
     }
   }
@@ -41,8 +48,7 @@ document.getElementById('food-list').addEventListener('click', (e) => {
 
 
 
-
-// FOOD CLASS AND ID GENERATION
+// Food class and ID generator ---------------------
 class Food {
   constructor(name, calories, mealTime, group, description) {
     this.name = name;
@@ -62,7 +68,9 @@ function generateID() {
 }
 
 
-// RETRIEVING AND CREATING DATA
+
+// retrieving data from local storage ---------------------
+
 function getData() {
   // if theres no data object create one
   if (!localStorage.getItem('data')) {
@@ -72,10 +80,7 @@ function getData() {
         goal: 2500,
         remaining: 2500
       },
-      food: {
-        currentFood: [],
-        savedFood: []
-      }
+      foodList: [],
     }
     localStorage.setItem('data', JSON.stringify(data));
   }
@@ -84,92 +89,102 @@ function getData() {
 }
 
 
-// ADDING FOOD
-function addCurrentFood(food) {
+// add removing, and displaying food functionality ------------
+
+function addFood(food) {
   // get data object
   const data = getData();
 
   // push food object to current food array
-  data.food.currentFood.push(food);
+  data.foodList.push(food);
 
   // save change to local storage
   localStorage.setItem('data', JSON.stringify(data));
 }
 
-// REMOVING FOOD
 function removeFood(id) {
   const data = getData();
-  const foodList = data.food.currentFood;
+  const foodList = data.foodList;
 
   const index = foodList.findIndex((e) => {
-   return e.id === id;
+    return e.id === id;
   })
 
-  data.food.currentFood.splice(index, 1);
-
+  if(index > -1) {
+    data.foodList.splice(index, 1);
+  }
+  
   localStorage.setItem('data', JSON.stringify(data));
 }
 
-// DISPLAY CURRENT FOOD ON FOOD-LIST
-function displayCurrentFood() {
-  const currentFood = getData().food.currentFood;
-  const foodList = document.getElementById('food-list');
+function displayFoodList() {
+  const foodList = getData().foodList;
+  const uiFoodList = document.getElementById('food-list');
   let html = '';
 
 
   // if there is food iterate through array creating template for each food item
-  if (currentFood.length >= 1) {
+  if (foodList.length >= 1) {
     // gets a copy of array and reverses it to display food items in most recent order
-    for (food of currentFood.slice().reverse()) {
+    for (food of foodList.slice().reverse()) {
       html += `
       <li class="food-list__item">
-            <a href="#food-detail" class="food" id="${food.id}">
-              <div class="food__container">
-                <div class="food__details">
-                  <h4 class="food__detail">${parseHtml(food.name)}</h4>
-                  <div class="food__detail">${food.calories}Kcal</div>
-                </div>
-                <div class="food__details">
-                  <div class="food__detail">${food.mealTime}</div>
-                  <div class="food__detail">${food.group}</div>
-                </div>
-              </div>
-            </a>
-          </li>`
+      <a href="#food-detail" class="food" id="${food.id}">
+        <div class="food__container">
+          <div class="food__section">
+            <h4 class="food__info">${parseHtml(food.name)}</h4>
+            <div class="food__info">${food.calories}Kcal</div>
+          </div>
+          <div class="food__section">
+            <div class="food__info">${food.mealTime}</div>
+            <div class="food__info">${food.group}</div>
+          </div>
+        </div>
+      </a>
+    </li>`
     }
   } else {
-     html = `
-    <li class="food-list-item">
-    <p class="food-list__text">
+    html = `
+    <p class="message">
       Looks like you've not added any food for today.  touch the plus button to add food.
-    </p>
-    </li>
+    </p>  
     `
   }
-  foodList.innerHTML = html;
+  uiFoodList.innerHTML = html;
 }
 
-// GET FOOD BY ID 
 function getFoodByID(id) {
-  const foodList = getData().food.currentFood;
+  const foodList = getData().foodList;
   return foodList.find((e) => {
     return e.id === id;
   })
 }
 
-
-
-// DISPLAYING DETAIL OF FOOD
 function displayFoodDetail(food) {
-  document.querySelector('.food--full-detail').id = food.id;
-  document.getElementById('food-detail-name').textContent = food.name;
-  document.getElementById('food-detail-calories').textContent = `${food.calories}Kcal`;
-  document.getElementById('food-detail-group').textContent = food.group;
-  document.getElementById('food-detail-time').textContent = food.mealTime;
-  document.getElementById('food-detail-description').textContent = food.description;
+  if(food) {
+    document.querySelector('.food-detail').id = food.id;
+    document.getElementById('food-detail-name').textContent = parseHtml(food.name);
+    document.getElementById('food-detail-calories').textContent = `${food.calories}Kcal`;
+    document.getElementById('food-detail-group').textContent = food.group;
+    document.getElementById('food-detail-time').textContent = food.mealTime;
+    document.getElementById('food-detail-description').textContent = parseHtml(food.description);
+
+    // removes message and adds ensure button is there
+    document.getElementById('food-detail-message').style.display = 'none';
+    document.getElementById('remove-food-button').style.display = 'block';
+  } else {
+    /* removes button if food doesn't exist (this only happens if user changes html address to 
+    #food-detail or refreshes) */
+    document.getElementById('food-detail-message').style.display = 'block';
+    document.getElementById('remove-food-button').style.display = 'none';
+  }
 }
 
-// SETTING CALORIE GOAL
+
+
+
+// Calorie calculations and displaying calories functionality -------------
+
 function setGoalCalories(goal) {
   const data = getData();
 
@@ -178,7 +193,6 @@ function setGoalCalories(goal) {
   localStorage.setItem('data', JSON.stringify(data));
 }
 
-// CALCULATE CALORIE GOALS AND REMAINING
 function calculateTotalAndRemainingCalories() {
   calculateTotalCalories();
   calculateRemainingCalories();
@@ -190,7 +204,7 @@ function calculateTotalCalories() {
   let totalCalories = 0;
 
 
-  for (food of data.food.currentFood) {
+  for (food of data.foodList) {
     totalCalories += food.calories;
   }
 
@@ -209,7 +223,6 @@ function calculateRemainingCalories() {
   localStorage.setItem('data', JSON.stringify(data));
 }
 
-// DISPLAYING CALORIE GOALS, TOTALS AND REMAINING
 function updateCalorieDisplay() {
   displayGoalCalories();
   displayTotalCalories();
@@ -240,13 +253,21 @@ function displayRemainingCalories() {
   carloriesRemainingDisplay.textContent = caloriesRemaining;
 }
 
-// HELPER FUNCTIONS
+
+
+// helper functions --------------------------
+
+function navigateTo(id) {
+  window.location.href = id;
+}
+
 function parseHtml(html) {
- return html.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return html.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 window.onload = () => {
-  displayCurrentFood();
+  displayFoodList();
   calculateTotalAndRemainingCalories();
   updateCalorieDisplay();
+  displayFoodDetail(null);
 }

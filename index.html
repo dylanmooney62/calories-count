@@ -12,7 +12,7 @@
   <!-- LINKS -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-   <link rel="stylesheet" href="css/jquery.css"> 
+  <link rel="stylesheet" href="css/jquery.css"> 
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -83,20 +83,20 @@
       <div class="main">
         <ul class="food-list" id="food-list">
           <!-- TEMPLATE FOR FOOD -->
-          <!-- <li class="food-list__item">
-            <a href="#food-detail" class="food" id="${food.id}">
-              <div class="food__container">
-                <div class="food__details food__details--left">
-                  <div class="food__detail">${food.name}</div>
-                  <div class="food__detail">${food.mealTime}</div>
+          <li class="food-list__item">
+              <a href="#food-detail" class="food" id="${food.id}">
+                <div class="food__container">
+                  <div class="food__section">
+                    <h4 class="food__info">Cheeseburger</h4>
+                    <div class="food__info">700Kcal</div>
+                  </div>
+                  <div class="food__section">
+                    <div class="food__info">Lunch</div>
+                    <div class="food__info">WTF</div>
+                  </div>
                 </div>
-                <div class="food__details food__details--right">
-                  <div class="food__detail">${food.calories}Kcal</div>
-                  <div class="food__detail">${food.group}</div>
-                </div>
-              </div>
-            </a>
-          </li> -->
+              </a>
+            </li>
         </ul>
 
         <a class="add-button" href="#food-add">
@@ -137,7 +137,7 @@
           <div class="header__menu header__menu--hidden">
             <ul class="header__menu-list">
               <li class="header__menu-item">
-                <a href="#settings" class="header__menu-link" data-transition="slide">
+                <a href="#settings" class="header__menu-link">
                   Settings
                 </a>
               </li>
@@ -159,18 +159,19 @@
 
       <!-- START OF MAIN CONTENT -->
       <div class="main">
-        <div class="food food--full-detail">
+        <p class="message" id="food-detail-message">You've not selected a food please go back and select a food from your list.</p>
+        <div class="food food-detail">
             <div class="food__container">
-              <div class="food__details">
-                <h4 class="food__detail" id="food-detail-name">Food Name</h4>
-                <div class="food__detail" id="food-detail-calories">0Kcal</div>
+              <div class="food__section">
+                <h4 class="food__info" id="food-detail-name"></h4>
+                <div class="food__info" id="food-detail-calories"></div>
               </div>
-              <div class="food__details">
-                  <div class="food__detail" id="food-detail-time">Lunch</div>
-                <div class="food__detail" id="food-detail-group">Mixed</div>
+              <div class="food__section">
+                  <div class="food__info" id="food-detail-time"></div>
+                <div class="food__info" id="food-detail-group"></div>
               </div>
-              <div class="food__details">
-                <div class="food__detail" id="food-detail-description">
+              <div class="food__section">
+                <div class="food__info" id="food-detail-description">
                 </div>    
               </div>
             </div>    
@@ -212,7 +213,7 @@
           <div class="header__menu header__menu--hidden">
             <ul class="header__menu-list">
               <li class="header__menu-item">
-                <a href="#settings" class="header__menu-link" data-transition="slide">
+                <a href="#settings" class="header__menu-link">
                   Settings
                 </a>
               </li>
@@ -263,8 +264,7 @@
           </div>
           <div class="form__group">
             <label class="form__label" for="add-food-calories">Calories</label>
-            <input class="form__input" name="add-food-calories" id="add-food-calories" type="number" placeholder="Calories"
-              required>
+            <input class="form__input" name="add-food-calories" id="add-food-calories" type="number" placeholder="Calories" min="0" max="9999" required>
           </div>
           <div class="form__group">
             <label class="form__label" for="add-food-description">Description</label>
