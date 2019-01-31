@@ -12,7 +12,7 @@
   <!-- LINKS -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="css/jquery.css">
+   <link rel="stylesheet" href="css/jquery.css"> 
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -59,17 +59,17 @@
         <!-- START OF DISPLAY -->
         <div class="display">
           <div class="display__group">
-            <span class="display__number" id="calories-total"></span>
-            <span class="display__label">Total Calories</span>
+            <div class="display__number" id="calories-total"></div>
+            <div class="display__label">Total Calories</div>
           </div>
           <div class="display__group">
-            <span class="display__number" id="calories-goal"></span>
-            <span class="display__label">My Goal</span>
+            <div class="display__number" id="calories-goal"></div>
+            <div class="display__label">My Goal</div>
           </div>
           <div class="display__group">
-            <span class="display__number" id="calories-remaining">
-            </span>
-            <span class="display__label">Remaining</span>
+            <div class="display__number" id="calories-remaining">
+            </div>
+            <div class="display__label">Remaining</div>
           </div>
         </div>
         <!-- END OF DISPLAY -->
@@ -87,12 +87,12 @@
             <a href="#food-detail" class="food" id="${food.id}">
               <div class="food__container">
                 <div class="food__details food__details--left">
-                  <span class="food__detail">${food.name}</span>
-                  <span class="food__detail">${food.mealTime}</span>
+                  <div class="food__detail">${food.name}</div>
+                  <div class="food__detail">${food.mealTime}</div>
                 </div>
                 <div class="food__details food__details--right">
-                  <span class="food__detail">${food.calories}Kcal</span>
-                  <span class="food__detail">${food.group}</span>
+                  <div class="food__detail">${food.calories}Kcal</div>
+                  <div class="food__detail">${food.group}</div>
                 </div>
               </div>
             </a>
@@ -159,7 +159,25 @@
 
       <!-- START OF MAIN CONTENT -->
       <div class="main">
-        This is the food detail page
+        <div class="food food--full-detail">
+            <div class="food__container">
+              <div class="food__details">
+                <h4 class="food__detail" id="food-detail-name">Food Name</h4>
+                <div class="food__detail" id="food-detail-calories">0Kcal</div>
+              </div>
+              <div class="food__details">
+                  <div class="food__detail" id="food-detail-time">Lunch</div>
+                <div class="food__detail" id="food-detail-group">Mixed</div>
+              </div>
+              <div class="food__details">
+                <div class="food__detail" id="food-detail-description">
+                </div>    
+              </div>
+            </div>    
+        </div>
+        <div class="container">
+            <button class="button button--primary" id="remove-food-button">Remove Food</button>
+        </div>
       </div>
 
       <!-- END OF MAIN CONTENT -->
@@ -222,28 +240,31 @@
             <input class="form__input" id="add-food-name" type="text" placeholder="Name" required>
           </div>
           <div class="form__group">
-              <label class="form__label" for="add-food-time">Meal Time</label>
-              <select class="form__select" name="add-food-time" id="add-food-time" required>
-                <option value="Breakfast">Breakfast</option>
-                <option value="Lunch">Lunch</option>
-                <option value="Dinner">Dinner</option>
-                <option value="Snack">Snack</option>
-              </select>
+            <label class="form__label" for="add-food-time">Meal Time</label>
+            <select class="form__select" name="add-food-time" id="add-food-time" required>
+              <option value="" disabled selected>Meal Time</option>
+              <option value="Breakfast">Breakfast</option>
+              <option value="Lunch">Lunch</option>
+              <option value="Dinner">Dinner</option>
+              <option value="Snack">Snack</option>
+            </select>
           </div>
           <div class="form__group">
             <label class="form__label" for="add-food-group">Food Group</label>
             <select class="form__select" name="add-food-group" id="add-food-group" required>
+              <option value="" disabled selected>Food Group</option>
               <option value="Mixed">Mixed</option>
               <option value="Carbohydrates">Carbohydrates</option>
               <option value="Meat">Meat</option>
               <option value="Dairy">Dairy</option>
               <option value="Fruit & Veg">Fruit & Veg</option>
               <option value="Fats & Sugars">Fats & Sugars</option>
-            </select>  
+            </select>
           </div>
           <div class="form__group">
             <label class="form__label" for="add-food-calories">Calories</label>
-            <input class="form__input" name="add-food-calories" id="add-food-calories" type="number" placeholder="Calories" required >
+            <input class="form__input" name="add-food-calories" id="add-food-calories" type="number" placeholder="Calories"
+              required>
           </div>
           <div class="form__group">
             <label class="form__label" for="add-food-description">Description</label>
