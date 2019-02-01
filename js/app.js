@@ -44,7 +44,7 @@ document.getElementById('food-list').addEventListener('click', (e) => {
 
 
 // settings form 
-document.getElementById('settings-form').addEventListener('submit', function (e) {
+document.getElementById('settings-form').addEventListener('submit',  (e) => {
   e.preventDefault();
   const goal = document.getElementById('settings-calorie-goal').value;
   setCalorieGoal(goal);
@@ -52,6 +52,15 @@ document.getElementById('settings-form').addEventListener('submit', function (e)
   updateCalorieDisplay();
   navigateTo('#home');
 });
+
+
+// reset functionality 
+document.getElementById('reset-button').addEventListener('click', () => {
+  removeAllFood();
+  calculateTotalAndRemainingCalories();
+  displayFoodList();
+  updateCalorieDisplay();
+})
 
 
 

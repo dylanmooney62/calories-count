@@ -12,7 +12,7 @@
   <!-- LINKS -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="css/jquery.css"> 
+  <link rel="stylesheet" href="css/jquery.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -20,6 +20,25 @@
 
   <!-- START OF HOME PAGE -->
   <section id="home" data-role="page">
+
+    <!-- START OF OVERLAY -->
+    <div class="overlay" id="overlay">
+      <div class="modal">
+        <div class="modal__section modal__section--top">
+          <p class="modal__text">Are you sure you wish to reset total calories?
+            This will remove all food from your list.
+          </p>
+        </div>
+
+        <div class="modal__section modal__section--bottom">
+          <button class="button button--secondary" id="close-modal-button">Cancel</button>
+          <button class="button button--danger" id="reset-button">Reset</button>
+        </div>
+      </div>
+    </div>
+    <!-- END OF OVERLAY -->
+
+
     <div class="flex-wrapper">
       <!-- START OF HEADER -->
       <header class="header">
@@ -74,7 +93,12 @@
         </div>
         <!-- END OF DISPLAY -->
         <div class="header__bottom">
-          <h3>My Food</h3>
+          <h3 class="header__heading-3">My Food</h3>
+          <button class="header__button" id="open-modal-button">
+            <i class="material-icons header__icon--small">
+              refresh
+            </i>
+          </button>
         </div>
       </header>
       <!-- END OF HEADER -->
@@ -84,19 +108,19 @@
         <ul class="food-list" id="food-list">
           <!-- TEMPLATE FOR FOOD -->
           <li class="food-list__item">
-              <a href="#food-detail" class="food" id="${food.id}">
-                <div class="food__container">
-                  <div class="food__section">
-                    <h4 class="food__info">Cheeseburger</h4>
-                    <div class="food__info">700Kcal</div>
-                  </div>
-                  <div class="food__section">
-                    <div class="food__info">Lunch</div>
-                    <div class="food__info">WTF</div>
-                  </div>
+            <a href="#food-detail" class="food" id="${food.id}">
+              <div class="food__container">
+                <div class="food__section">
+                  <h4 class="food__info">Cheeseburger</h4>
+                  <div class="food__info">700Kcal</div>
                 </div>
-              </a>
-            </li>
+                <div class="food__section">
+                  <div class="food__info">Lunch</div>
+                  <div class="food__info">WTF</div>
+                </div>
+              </div>
+            </a>
+          </li>
         </ul>
 
         <a class="add-button" href="#add-food">
@@ -159,25 +183,26 @@
 
       <!-- START OF MAIN CONTENT -->
       <div class="main">
-        <p class="message" id="food-detail-message">You've not selected a food please go back and select a food from your list.</p>
+        <p class="message" id="food-detail-message">You've not selected a food please go back and select a food from
+          your list.</p>
         <div class="food food-detail">
-            <div class="food__container">
-              <div class="food__section">
-                <h4 class="food__info" id="food-detail-name"></h4>
-                <div class="food__info" id="food-detail-calories"></div>
+          <div class="food__container">
+            <div class="food__section">
+              <h4 class="food__info" id="food-detail-name"></h4>
+              <div class="food__info" id="food-detail-calories"></div>
+            </div>
+            <div class="food__section">
+              <div class="food__info" id="food-detail-time"></div>
+              <div class="food__info" id="food-detail-group"></div>
+            </div>
+            <div class="food__section">
+              <div class="food__info" id="food-detail-description">
               </div>
-              <div class="food__section">
-                  <div class="food__info" id="food-detail-time"></div>
-                <div class="food__info" id="food-detail-group"></div>
-              </div>
-              <div class="food__section">
-                <div class="food__info" id="food-detail-description">
-                </div>    
-              </div>
-            </div>    
+            </div>
+          </div>
         </div>
         <div class="container">
-            <button class="button button--primary" id="remove-food-button">Remove Food</button>
+          <button class="button button--primary" id="remove-food-button">Remove Food</button>
         </div>
       </div>
 
@@ -264,7 +289,8 @@
           </div>
           <div class="form__group">
             <label class="form__label" for="add-food-calories">Calories</label>
-            <input class="form__input" name="add-food-calories" id="add-food-calories" type="number" placeholder="Calories" min="0" max="9999" required>
+            <input class="form__input" name="add-food-calories" id="add-food-calories" type="number" placeholder="Calories"
+              min="0" max="9999" required>
           </div>
           <div class="form__group">
             <label class="form__label" for="add-food-description">Description</label>
@@ -328,7 +354,8 @@
         <form class="form" id="settings-form">
           <div class="form__group">
             <label class="form__label" for="goal">Calorie Goal</label>
-            <input type="number" id="settings-calorie-goal" class="form__input" placeholder="Calorie Goal" required min="0" max="9999">
+            <input type="number" id="settings-calorie-goal" class="form__input" placeholder="Calorie Goal" required min="0"
+              max="9999">
           </div>
           <button class="button button--primary">Save Settings</button>
         </form>
@@ -446,6 +473,7 @@
   <!-- END OF CONTACT PAGE -->
 
   <!-- SCRIPTS -->
+  <script src="js/modal.js"></script>
   <script src="js/menu.js"></script>
   <script src="js/app.js"></script>
 </body>

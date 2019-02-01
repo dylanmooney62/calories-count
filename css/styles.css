@@ -6,7 +6,7 @@
   --color-blue-secondary: #19354F;
   --color-blue-tertiary: #B7D1E9;
   --color-green: #51CE65;
-  --color-red: #ff0000;
+  --color-red: #fa5151;
   --color-white: #ffffff;
   --color-light-grey-1: #B8BBC6;
   --color-light-grey-2: #F6F8FB;
@@ -70,8 +70,7 @@ h3 {
   margin: 0;
   color: var(--color-white);
   font-weight: 400;
-  line-height: 0;
-  transform: translate(1.2rem, -1.5rem);
+  line-height: 1;
 }
 
 h4 {
@@ -122,12 +121,16 @@ section {
 .header__top {
   display: flex;
   align-items: center;
-  margin: 1.6rem 1.2rem;
+  padding: 1.2rem 1.6rem 0 1.6rem;
+  margin-bottom: 1.2rem;
 }
 
 .header__bottom {
-  max-width: 600px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: -2.4rem;
+  padding: 0 1.6rem .8rem 1.6rem;
+  align-items: center;
 }
 
 
@@ -163,6 +166,10 @@ section {
 
 .header__icon {
   font-size: 3rem;
+}
+
+.header__icon--small {
+  font-size: 2.4rem
 }
 
 
@@ -279,10 +286,9 @@ section {
   color: var(--color-white);
 }
 
-.button--tertiary {
+.button--secondary {
   background-color: var(--color-light-grey-3);
   color: var(--color-dark-grey-1);
-
 }
 
 .button:focus {
@@ -514,4 +520,58 @@ section {
 
 .form__group {
   margin-bottom: 2.4rem;
+}
+
+
+/* OVERLAY AND MODAL ----------------------------------------------------------- */
+
+.overlay {
+  position: fixed;
+  z-index: 200;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+.overlay--visible {
+  display: flex;
+}
+
+.modal {
+  margin: 0 1.6rem;
+  transform: translateY(-5em);
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: .5rem;
+  max-width: 500px;
+}
+
+.modal__text {
+  text-align: center;
+}
+
+.modal__section {
+
+}
+
+.modal__section--top {
+  border-top-right-radius: .5rem;
+  border-top-left-radius: .5rem;
+  padding: 2.4rem 1.6rem;
+}
+
+.modal__section--bottom {
+  display: flex;
+  padding: 1.6rem 1.6rem;
+  background-color: var(--color-light-grey-3);
+  border-bottom-right-radius: .5rem;
+  border-bottom-left-radius: .5rem;
+}
+
+.modal__section .button:first-child {
+  margin-right: 3rem;
 }
