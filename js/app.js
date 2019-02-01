@@ -43,6 +43,17 @@ document.getElementById('food-list').addEventListener('click', (e) => {
 });
 
 
+// settings form 
+document.getElementById('settings-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const goal = document.getElementById('settings-calorie-goal').value;
+  setCalorieGoal(goal);
+  calculateTotalAndRemainingCalories();
+  updateCalorieDisplay();
+  navigateTo('#home');
+});
+
+
 
 
 
@@ -117,6 +128,12 @@ function removeFood(id) {
   localStorage.setItem('data', JSON.stringify(data));
 }
 
+function removeAllFood() {
+  const data = getData();
+  data.foodList = [];
+  localStorage.setItem('data', JSON.stringify(data));
+}
+
 function displayFoodList() {
   const foodList = getData().foodList;
   const uiFoodList = document.getElementById('food-list');
@@ -153,6 +170,7 @@ function displayFoodList() {
   uiFoodList.innerHTML = html;
 }
 
+
 function getFoodByID(id) {
   const foodList = getData().foodList;
   return foodList.find((e) => {
@@ -185,7 +203,7 @@ function displayFoodDetail(food) {
 
 // Calorie calculations and displaying calories functionality -------------
 
-function setGoalCalories(goal) {
+function setCalorieGoal(goal) {
   const data = getData();
 
   data.calories.goal = goal;
@@ -246,8 +264,10 @@ function displayRemainingCalories() {
 
   if (caloriesRemaining >= 0) {
     carloriesRemainingDisplay.classList.add('display__number--green');
+    carloriesRemainingDisplay.classList.remove('display__number--red');
   } else {
     carloriesRemainingDisplay.classList.add('display__number--red');
+    carloriesRemainingDisplay.classList.remove('display__number--green');
   }
 
   carloriesRemainingDisplay.textContent = caloriesRemaining;
@@ -265,9 +285,15 @@ function parseHtml(html) {
   return html.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
+function populateSettings() {
+  const calorieGoal = getData().calories.goal;
+  document.getElementById('settings-calorie-goal').value = calorieGoal;
+}
+
 window.onload = () => {
   displayFoodList();
   calculateTotalAndRemainingCalories();
   updateCalorieDisplay();
   displayFoodDetail(null);
+  populateSettings();
 }

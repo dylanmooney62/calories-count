@@ -99,7 +99,7 @@
             </li>
         </ul>
 
-        <a class="add-button" href="#food-add">
+        <a class="add-button" href="#add-food">
           <i class="add-button__icon material-icons">
             add
           </i>
@@ -186,8 +186,8 @@
   </section>
   <!-- END OF FOOD DETAIL PAGE -->
 
-  <!-- START OF FOOD ADD PAGE -->
-  <section id="food-add" data-role="page">
+  <!-- START OF ADD FOOD PAGE -->
+  <section id="add-food" data-role="page">
     <div class="flex-wrapper">
       <!-- START OF HEADER -->
       <header class="header">
@@ -325,7 +325,13 @@
 
       <!-- START OF MAIN CONTENT -->
       <div class="main">
-        This is the settings page
+        <form class="form" id="settings-form">
+          <div class="form__group">
+            <label class="form__label" for="goal">Calorie Goal</label>
+            <input type="number" id="settings-calorie-goal" class="form__input" placeholder="Calorie Goal" required min="0" max="9999">
+          </div>
+          <button class="button button--primary">Save Settings</button>
+        </form>
       </div>
       <!-- END OF MAIN CONTENT -->
     </div>
