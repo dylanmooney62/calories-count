@@ -1,3 +1,7 @@
+// stops contact form from submitting
+document.getElementById('contact-form').addEventListener('submit', e => e.preventDefault());
+
+
 // adding food functionality
 document.getElementById('add-food-form').addEventListener('submit', function (e) {
   e.preventDefault();
@@ -80,6 +84,7 @@ class Food {
   }
 }
 
+// unique id generator from stack overflow
 function generateID() {
   var S4 = function () {
     return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
@@ -148,6 +153,7 @@ function displayFoodList() {
   const uiFoodList = document.getElementById('food-list');
   let html = '';
 
+  // this is inefficent and should be refactored*
 
   // if there is food iterate through array creating template for each food item
   if (foodList.length >= 1) {
@@ -195,15 +201,6 @@ function displayFoodDetail(food) {
     document.getElementById('food-detail-group').textContent = food.group;
     document.getElementById('food-detail-time').textContent = food.mealTime;
     document.getElementById('food-detail-description').textContent = parseHtml(food.description);
-
-    // removes message and adds ensure button is there
-    document.getElementById('food-detail-message').style.display = 'none';
-    document.getElementById('remove-food-button').style.display = 'block';
-  } else {
-    /* removes button if food doesn't exist (this only happens if user changes html address to 
-    #food-detail or refreshes) */
-    document.getElementById('food-detail-message').style.display = 'block';
-    document.getElementById('remove-food-button').style.display = 'none';
   }
 }
 
@@ -284,8 +281,6 @@ function displayRemainingCalories() {
 
 
 
-// helper functions --------------------------
-
 function navigateTo(id) {
   window.location.href = id;
 }
@@ -303,6 +298,5 @@ window.onload = () => {
   displayFoodList();
   calculateTotalAndRemainingCalories();
   updateCalorieDisplay();
-  displayFoodDetail(null);
   populateSettings();
 }

@@ -14,9 +14,37 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="css/jquery.css">
   <link rel="stylesheet" href="css/styles.css">
+  <!-- favicon links -->
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
 </head>
 
 <body>
+
+
+    <!-- START OF SPLASH PAGE -->
+    <section id="splash" class="splash" data-role="page">
+
+        <div class="splash__text-box">
+          <h1 class="splash__title">
+            Calories count
+          </h1>
+          <p class="splash__sub">Meals made simple</p>
+        </div>
+        <div class="splash__swipe">
+          <i class="splash__icon material-icons">
+            expand_less
+          </i>
+          <a href="#home" class="splash__text">Swipe up</a>
+        </div>
+    
+      </section>
+      <!-- END OF SPLASH PAGE -->
+
 
   <!-- START OF HOME PAGE -->
   <section id="home" data-role="page">
@@ -107,7 +135,7 @@
       <div class="main">
         <ul class="food-list" id="food-list">
           <!-- TEMPLATE FOR FOOD -->
-          <li class="food-list__item">
+          <!-- <li class="food-list__item">
             <a href="#food-detail" class="food" id="${food.id}">
               <div class="food__container">
                 <div class="food__section">
@@ -116,11 +144,11 @@
                 </div>
                 <div class="food__section">
                   <div class="food__info">Lunch</div>
-                  <div class="food__info">WTF</div>
+                  <div class="food__info">Meat</div>
                 </div>
               </div>
             </a>
-          </li>
+          </li> -->
         </ul>
 
         <a class="add-button" href="#add-food">
@@ -133,6 +161,7 @@
     </div>
   </section>
   <!-- END OF HOME PAGE -->
+
 
   <!-- START OF FOOD DETAIL PAGE -->
   <section id="food-detail" data-role="page">
@@ -183,8 +212,6 @@
 
       <!-- START OF MAIN CONTENT -->
       <div class="main">
-        <p class="message" id="food-detail-message">You've not selected a food please go back and select a food from
-          your list.</p>
         <div class="food food-detail">
           <div class="food__container">
             <div class="food__section">
@@ -412,7 +439,58 @@
 
       <!-- START OF MAIN CONTENT -->
       <div class="main">
-        This is the help page
+        <ul class="drop-down-list">
+          <li class="drop-down">
+            <div class="drop-down__header">
+              <div class="drop-down__container">
+                <h2 class="drop-down__title">How do I add food?</h2>
+                <i class="drop-down__icon material-icons">
+                  expand_more
+                </i>
+              </div>
+            </div>
+            <div class="drop-down__content">
+              <div class="drop-down__container">
+                <p class="drop-down__text">Touch the '+' button at the bottom right corner of the home page and this
+                  will
+                  take you to a form, you can now write down your food details. once down click the add food button and
+                  your food will now be added to the list.</p>
+              </div>
+            </div>
+          </li>
+          <li class="drop-down">
+            <div class="drop-down__header">
+              <div class="drop-down__container">
+                <h2 class="drop-down__title">How do I remove food?</h2>
+                <i class="drop-down__icon material-icons">
+                  expand_more
+                </i>
+              </div>
+            </div>
+            <div class="drop-down__content">
+              <div class="drop-down__container">
+                <p class="drop-down__text">Select a food from your list by touch it and you will be taken to the food
+                  detail page. On the food detail page there will be a remove food button.</p>
+              </div>
+            </div>
+          </li>
+          <li class="drop-down">
+            <div class="drop-down__header">
+              <div class="drop-down__container">
+                <h2 class="drop-down__title">How do I reset calories?</h2>
+                <i class="drop-down__icon material-icons">
+                  expand_more
+                </i>
+              </div>
+            </div>
+            <div class="drop-down__content">
+              <div class="drop-down__container">
+                <p class="drop-down__text">Select a food from your list by touch it and you will be taken to the food
+                  detail page. On the food detail page there will be a remove food button.</p>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
       <!-- END OF MAIN CONTENT -->
     </div>
@@ -465,7 +543,25 @@
       <!-- END OF HEADER -->
       <!-- START OF MAIN CONTENT -->
       <div class="main">
-        This is the contact page
+        <form action="#" class="form" id="contact-form">
+          <div class="form__group">
+            <label class="form__label" for="name">Name</label>
+            <input type="text" class="form__input" id="name" name="name" placeholder="Name">
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="email">Email</label>
+            <input type="text" class="form__input" id="email" name="email" placeholder="Email">
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="subject">Subject</label>
+            <input type="text" class="form__input" id="subject" name="subject" placeholder="Subject">
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="message">Message</label>
+            <textarea class="form__textarea" name="message" id="message" placeholder="Message"></textarea>
+          </div>
+          <button type="submit" class="button button--primary">Send</button>
+        </form>
       </div>
       <!-- END OF MAIN CONTENT -->
     </div>
@@ -473,6 +569,7 @@
   <!-- END OF CONTACT PAGE -->
 
   <!-- SCRIPTS -->
+  <script src="js/dropdown.js"></script>
   <script src="js/modal.js"></script>
   <script src="js/menu.js"></script>
   <script src="js/app.js"></script>
